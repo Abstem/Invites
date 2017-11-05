@@ -1,0 +1,27 @@
+{
+    "name": "Abstem/Invites",
+    "description": "An Invitation-Based Membership System",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": "5.*"
+    },
+    "author": {
+        "name": "Reginaldo Junior ",
+        "email": "reginaldo.junior696@gmail.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "Abstem\\Invites\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Abstem\\Invites\\InvitesServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
