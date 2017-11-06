@@ -15,7 +15,7 @@ You can pull in the package using [composer](https://getcomposer.org):
 $ composer require clarkeash/invites
 ```
 
-Next, register the service provider with Laravel:
+Next, register the service provider with Laravel (no need on version 5.5):
 
 ```php
 // config/app.php
