@@ -5,7 +5,8 @@
     "type": "library",
     "require": {
         "php": ">=7.0",
-        "illuminate/support": "5.*"
+        "illuminate/support": "5.*",
+        "ramsey/uuid": "^3.0@dev"
     },
     "author": {
         "name": "Reginaldo Junior ",
@@ -20,7 +21,10 @@
         "laravel": {
             "providers": [
                 "Abstem\\Invites\\InvitesServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Invites": "Abstem\\Invites\\Facades\\Invites"
+            }
         }
     },
     "minimum-stability": "dev"

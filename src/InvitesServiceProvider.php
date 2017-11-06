@@ -2,8 +2,9 @@
 
 namespace Abstem\Invites;
 
+use Abstem\Invites\Classes\Invites;
+use Abstem\Invites\Console\Commands\CleanupCommand;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\Router;
 
 class InvitesServiceProvider extends ServiceProvider
 {
@@ -14,28 +15,27 @@ class InvitesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CleanupCommand::class,
+            ]);
+        }
 
         $this->publishes([
-            __DIR__ . '/config/invites.php' => config_path('invites.php'),
+            __DIR__ . '/../resources/config/invites.php' => config_path('invites.php'),
         ], 'invites_config');
 
-        $this->loadMigrationsFrom(__DIR__ . '/migrations');
-
-        $this->loadTranslationsFrom(__DIR__ . '/translations', 'Invites');
-
         $this->publishes([
-            __DIR__ . '/resources/lang' => resource_path('lang/vendor/Invites'),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/Invites'),
         ]);
 
         $this->publishes([
-            __DIR__ . '/resources/assets' => public_path('vendor/Invites'),
+            __DIR__ . '/../resources/assets' => public_path('vendor/Invites'),
         ], 'invites_assets');
 
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                /* List Of Commands Here */
-            ]);
-        }
+        $this->loadMigrationsFrom(__DIR__ . '/../resources/migrations');
+
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/translations', 'Invites');
     }
 
     /**
@@ -46,7 +46,10 @@ class InvitesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/invites.php', 'invites'
+            __DIR__ . '/../resources/config/invites.php', 'invites'
         );
+
+        $this->app->bind('invites', Invites::class);
+        $this->app->singleton(Invites::class, Invites::class);
     }
 }
