@@ -12,7 +12,7 @@ Invite Codes:
 You can pull in the package using [composer](https://getcomposer.org):
 
 ```bash
-$ composer require clarkeash/invites
+$ composer require abstem/invites
 ```
 
 Next, register the service provider with Laravel (no need on version 5.5):
