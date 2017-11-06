@@ -1,5 +1,5 @@
 {
-    "name": "Abstem/Invites",
+    "name": "abstem/invites",
     "description": "An Invitation-Based Membership System",
     "license": "MIT",
     "type": "library",
